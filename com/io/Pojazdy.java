@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Pojazdy {
 	private ArrayList<Ciezarowka> listaCiezarowek = new ArrayList<>();
 	private ArrayList<Dostawczak> listaDostawczakow = new ArrayList<>();
-
+	Scanner scanner = new Scanner(System.in);
 	void printAll() {
 		System.out.println("Samochody Ciezarowe: ");
 		for (int i = 0; i < listaCiezarowek.size(); i++) {
@@ -17,30 +17,12 @@ public class Pojazdy {
 	}
 
 	public void addCiezarowka() {
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.print("Enter production date: ");
-		int productionDate = scanner.nextInt();
-		System.out.print("Enter max capacity: ");
-		int maxCapacity = scanner.nextInt();
-		System.out.print("Enter status: ");
-		int status = scanner.nextInt();
-		System.out.print("Enter brand name: ");
-		String brandName = scanner.nextLine();
-		System.out.print("Enter car registration: ");
-		String carRegistration = scanner.nextLine();
-		System.out.print("Enter trailer length: ");
-		float trailerLength = scanner.nextFloat();
-		System.out.print("Enter trailer weight: ");
-		int trailerWeight = scanner.nextInt();
-		System.out.print("Enter axle load: ");
-		int axleLoad = scanner.nextInt();
-		System.out.print("Enter type: ");
-		char type = scanner.nextLine().charAt(0);
-
-		Ciezarowka ciezarowka = new Ciezarowka(productionDate, maxCapacity, status, brandName, carRegistration, trailerLength, trailerWeight, axleLoad, type);
-
-		listaCiezarowek.add(ciezarowka);
+		Ciezarowka ciezarowka = getInfoCiezarowkaFromConsole();
+		if(!containsCiezarowkaWithRegistration(ciezarowka.getCar_registration())) {
+			listaCiezarowek.add(ciezarowka);
+		}else{
+			System.out.println("Ciężarówka istnieje w bazie!");
+		}
 	}
 
 
@@ -53,7 +35,6 @@ public class Pojazdy {
 	}
 
 	public void modifyCiezarowkaFields(int id) {
-		Scanner scanner = new Scanner(System.in);
 		Ciezarowka c = listaCiezarowek.get(id);
 
 		System.out.println("Enter new production date: ");
@@ -109,5 +90,38 @@ public class Pojazdy {
 			System.out.println("Invalid ID!");
 		}
 	}
+
+	public Ciezarowka getInfoCiezarowkaFromConsole(){
+		System.out.print("Enter production date: ");
+		int productionDate = scanner.nextInt();
+		System.out.print("Enter max capacity: ");
+		int maxCapacity = scanner.nextInt();
+		System.out.print("Enter status: ");
+		int status = scanner.nextInt();
+		System.out.print("Enter brand name: ");
+		String brandName = scanner.nextLine();
+		System.out.print("Enter car registration: ");
+		String carRegistration = scanner.nextLine();
+		System.out.print("Enter trailer length: ");
+		float trailerLength = scanner.nextFloat();
+		System.out.print("Enter trailer weight: ");
+		int trailerWeight = scanner.nextInt();
+		System.out.print("Enter axle load: ");
+		int axleLoad = scanner.nextInt();
+		System.out.print("Enter type: ");
+		char type = scanner.nextLine().charAt(0);
+		Ciezarowka tempCiezarowka = new Ciezarowka(productionDate, maxCapacity, status, brandName, carRegistration, trailerLength, trailerWeight, axleLoad, type);
+		return  tempCiezarowka;
+	}
+
+	public boolean containsCiezarowkaWithRegistration(String carRegistration) {
+		for (Ciezarowka ciezarowka : listaCiezarowek) {
+			if (ciezarowka.getCar_registration().equals(carRegistration)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 }

@@ -12,6 +12,10 @@ public class Main {
 		pojazdy = new Pojazdy();
 	}
 
+	public void addKierowca(){
+		kierowcy.addAndCreateKierowca();
+	}
+
 	public void modifyCiezarowka(){
 		Scanner in = new Scanner(System.in);
 		pojazdy.printAll();

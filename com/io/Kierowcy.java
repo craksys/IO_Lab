@@ -6,7 +6,7 @@ import java.util.SortedMap;
 
 public class Kierowcy {
 	private ArrayList<Kierowca> listKierowcow = new ArrayList<>();
-
+	Scanner in = new Scanner(System.in);
 	public void printAll() {
 		if(listKierowcow.size() == 0){
 			System.out.println("Brak kierowców w bazie!");
@@ -22,7 +22,6 @@ public class Kierowcy {
 
 
 	public void removeKierowca() {
-		Scanner in = new Scanner(System.in);
 		printAll();
 		int id = in.nextInt();
 		listKierowcow.remove(id-1);
@@ -110,7 +109,9 @@ public class Kierowcy {
 			entitlement.add(input.next());
 		}
 
-		listKierowcow.add(new Kierowca(birthYear, birthMonth, birthDay, name, surname, entitlement, 0, 0));
+		if(!containsKierowca(name,surname)) {
+			listKierowcow.add(new Kierowca(birthYear, birthMonth, birthDay, name, surname, entitlement, 0, 0));
+		}
 	}
 
 	public boolean containsKierowca(String name, String surname) {

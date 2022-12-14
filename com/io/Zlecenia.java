@@ -5,15 +5,33 @@ import java.util.Scanner;
 
 public class Zlecenia {
 	private ArrayList <Zlecenie> listaZlecen = new ArrayList<Zlecenie>();
-	public Zlecenie unnamed_Zlecenie_;
-	public Main unnamed_Main_;
-
-	public void printAll() {
-		throw new UnsupportedOperationException();
+	Scanner scanner = new Scanner(System.in);
+	public void printAll(ArrayList<Zlecenie> listaZlecen) {
+		for (Zlecenie zlecenie : listaZlecen) {
+			System.out.println("Company name: " + zlecenie.getCompany_name());
+			System.out.println("ID: " + zlecenie.getId());
+		}
 	}
 
-	public void addZlecenie(Zlecenie zlecenie) {
-		throw new UnsupportedOperationException();
+
+	public void addZlecenie() {
+		Zlecenie zlecenie = new Zlecenie();
+		askUserAndSetZlecenieVariables(zlecenie);
+		zlecenie.calculateValue();
+		System.out.println("Sugerowany koszt zlecenia to: " + Math.round(zlecenie.getValue()) + " zł");
+		System.out.println("Czy chcesz nadpisać koszt? 1 - tak, 0 - nie: ");
+		int isWantToChangeCost = scanner.nextInt();
+		double newCost;
+		if(isWantToChangeCost == 1){
+			System.out.println("Wprowadź nowy koszt: ");
+			newCost = scanner.nextDouble();
+			zlecenie.setValue(newCost);
+			System.out.println("Nadpisano!");
+		}
+
+		if(!containsZlecenie(zlecenie.getCompany_name(),zlecenie.getDistance())){
+			listaZlecen.add(zlecenie);
+		}
 	}
 
 	public Zlecenie createZlecenie() {
@@ -40,28 +58,18 @@ public class Zlecenia {
 			int a = in.nextInt();
 			switch (a){
 				case 1:
-					System.out.println("Dzień: ");
-					edytowane.setStart_day(in.nextInt());
-					System.out.println("Miesiąc: ");
-					edytowane.setStart_month(in.nextInt());
-					System.out.println("Rok: ");
-					edytowane.setStart_year(in.nextInt());
+
 				case 2:
-					System.out.println("Dzień: ");
-					edytowane.setFinish_year(in.nextInt());
-					System.out.println("Miesiąc: ");
-					edytowane.setFinish_month(in.nextInt());
-					System.out.println("Rok: ");
-					edytowane.setFinish_year(in.nextInt());
+
 				case 3:
-					System.out.println("Sugerowany koszt: " + edytowane.calculateValue() + " zł \n");
+					//System.out.println("Sugerowany koszt: " + edytowane.calculateValue() + " zł \n");
 					System.out.println("Nowy koszt: ");
 					double x = in.nextDouble();
-					if(x > (0.9 * edytowane.calculateValue()) && x < (1.1 * edytowane.calculateValue())){
-						edytowane.setValue(x);
-					} else {
-						System.out.println("Koszt nie jest poprawny");
-					}
+					//if(x > (0.9 * edytowane.calculateValue()) && x < (1.1 * edytowane.calculateValue())){
+					//	edytowane.setValue(x);
+					//} else {
+					//	System.out.println("Koszt nie jest poprawny");
+					//}
 				case 4:
 					System.out.println("Odległość: ");
 					edytowane.setDistance(in.nextInt());
@@ -73,11 +81,11 @@ public class Zlecenia {
 				case 7:
 					edytowane.getKierowca();
 				case 0:
-					if (edytowane.getValue() < (0.9 * edytowane.calculateValue()) || edytowane.getValue() > (1.1 * edytowane.calculateValue())){
-						System.out.println("Koszt nie jest poprawny");
-					} else {
-						break;
-					}
+					//if (edytowane.getValue() < (0.9 * edytowane.calculateValue()) || edytowane.getValue() > (1.1 * edytowane.calculateValue())){
+					//	System.out.println("Koszt nie jest poprawny");
+					//} else {
+					//	break;
+					//}
 			}
 
 		}
@@ -99,4 +107,34 @@ public class Zlecenia {
 	public void addAndCreateZlecenie() {
 		throw new UnsupportedOperationException();
 	}
+
+	public boolean containsZlecenie(String companyName, int distance) {
+		for (Zlecenie zlecenie : listaZlecen) {
+			if (zlecenie.getCompany_name().equals(companyName) && zlecenie.getDistance() == distance) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void askUserAndSetZlecenieVariables(Zlecenie zlecenie) {
+
+
+		System.out.println("Enter company name: ");
+		zlecenie.setCompany_name(scanner.nextLine());
+
+		System.out.println("Enter distance: ");
+		zlecenie.setDistance(scanner.nextInt());
+
+		System.out.println("Enter duration: ");
+		zlecenie.setDuration(scanner.nextInt());
+
+		System.out.println("Enter status: ");
+		zlecenie.setStatus(scanner.nextInt());
+
+		System.out.println("Enter id: ");
+		zlecenie.setId(scanner.nextInt());
+	}
+
+
 }
