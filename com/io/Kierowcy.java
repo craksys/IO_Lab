@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.SortedMap;
 
 public class Kierowcy {
-	private ArrayList<Kierowca> listKierowcow = new ArrayList<>();
+	protected ArrayList<Kierowca> listKierowcow = new ArrayList<>();
 	Scanner in = new Scanner(System.in);
 	public void printAll() {
 		if(listKierowcow.size() == 0){
@@ -122,4 +122,27 @@ public class Kierowcy {
 		}
 		return false;
 	}
+
+	public void editKierowca(int index, String variable, Object newValue) {
+		Kierowca tempKierowca = listKierowcow.get(index);
+
+		if (variable.equals("rok urodzenia")) {
+			tempKierowca.setBirth_year((int) newValue);
+		} else if (variable.equals("miesiac urodzenia")) {
+			tempKierowca.setBirth_month((int) newValue);
+		} else if (variable.equals("dzien urodzenia")) {
+			tempKierowca.setBirth_day((int) newValue);
+		} else if (variable.equals("imie")) {
+			tempKierowca.setName((String) newValue);
+		} else if (variable.equals("nazwisko")) {
+			tempKierowca.setSurname((String) newValue);
+		} else if (variable.equals("entitlement")) {
+			tempKierowca.setEntitlement((ArrayList) newValue);
+		} else if (variable.equals("pesel")) {
+			tempKierowca.setPesel((long) newValue);
+		} else if (variable.equals("status")) {
+			tempKierowca.setStatus((int) newValue);
+		}
+	}
+
 }

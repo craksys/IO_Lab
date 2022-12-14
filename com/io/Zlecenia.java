@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Zlecenia {
 	private ArrayList <Zlecenie> listaZlecen = new ArrayList<Zlecenie>();
+	private Kierowcy kierowcy = new Kierowcy();
+	private Pojazdy pojazdy = new Pojazdy();
 	Scanner scanner = new Scanner(System.in);
 	public void printAll(ArrayList<Zlecenie> listaZlecen) {
 		for (Zlecenie zlecenie : listaZlecen) {
@@ -30,6 +32,7 @@ public class Zlecenia {
 		}
 
 		if(!containsZlecenie(zlecenie.getCompany_name(),zlecenie.getDistance())){
+			addKierowcaAndPojazd(zlecenie);
 			listaZlecen.add(zlecenie);
 		}
 	}
@@ -119,7 +122,6 @@ public class Zlecenia {
 
 	public void askUserAndSetZlecenieVariables(Zlecenie zlecenie) {
 
-
 		System.out.println("Enter company name: ");
 		zlecenie.setCompany_name(scanner.nextLine());
 
@@ -136,5 +138,17 @@ public class Zlecenia {
 		zlecenie.setId(scanner.nextInt());
 	}
 
+	public void addKierowcaAndPojazd(Zlecenie zlecenie){
+		kierowcy.printAll();
+		System.out.println("Podaj id kierowcy do przypisania: ");
+		int id = scanner.nextInt()-1;
+		zlecenie.setKierowca(kierowcy.listKierowcow.get(id));
+		kierowcy.listKierowcow.get(id).setStatus(10);
 
+		pojazdy.printAll();
+		System.out.println("Podaj id pojazdu do przypisania: ");
+		id = scanner.nextInt()-1;
+		zlecenie.setPojazd(pojazdy.listaCiezarowek.get(id));
+		pojazdy.listaCiezarowek.get(id).setStatus(10);
+	}
 }

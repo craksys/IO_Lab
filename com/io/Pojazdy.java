@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pojazdy {
-	private ArrayList<Ciezarowka> listaCiezarowek = new ArrayList<>();
-	private ArrayList<Dostawczak> listaDostawczakow = new ArrayList<>();
+	protected ArrayList<Ciezarowka> listaCiezarowek = new ArrayList<>();
+	protected ArrayList<Dostawczak> listaDostawczakow = new ArrayList<>();
 	Scanner scanner = new Scanner(System.in);
 	void printAll() {
 		System.out.println("Samochody Ciezarowe: ");
