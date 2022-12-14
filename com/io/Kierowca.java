@@ -12,6 +12,9 @@ public class Kierowca {
 	private long pesel;
 	private int status;
 
+	public Kierowca(int birthYear, int birthMonth, int birthDay, String name, String surname, ArrayList entitlement, int i, int i1) {
+	}
+
 	public void getDataAndSave() {
 		throw new UnsupportedOperationException();
 	}

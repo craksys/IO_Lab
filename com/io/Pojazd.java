@@ -1,12 +1,10 @@
 package com.io;
-public class Pojazd {
-	private int production_date;
-	private int truck_weight;
-	private String oc_expire_date = "";
-	private String review_expire_date = "";
-	private int max_capacity;
-	private int status;
-	private float truck_lenght;
+public abstract class Pojazd {
+	protected int production_date;
+	protected int max_capacity;
+	protected int status;
+	protected String brand_name;
+	protected String car_registration;
 
 	public int getProduction_date() {
 		return this.production_date;
@@ -14,30 +12,6 @@ public class Pojazd {
 
 	public void setProduction_date(int production_date) {
 		this.production_date = production_date;
-	}
-
-	public int getTruck_weight() {
-		return this.truck_weight;
-	}
-
-	public void setTruck_weight(int truck_weight) {
-		this.truck_weight = truck_weight;
-	}
-
-	public String getOc_expire_date() {
-		return this.oc_expire_date;
-	}
-
-	public void setOc_expire_date(String oc_expire_date) {
-		this.oc_expire_date = oc_expire_date;
-	}
-
-	public String getReview_expire_date() {
-		return this.review_expire_date;
-	}
-
-	public void setReview_expire_date(String review_expire_date) {
-		this.review_expire_date = review_expire_date;
 	}
 
 	public int getMax_capacity() {
@@ -56,11 +30,20 @@ public class Pojazd {
 		this.status = status;
 	}
 
-	public float getTruck_lenght() {
-		return this.truck_lenght;
+
+	public String getCar_registration() {
+		return car_registration;
 	}
 
-	public void setTruck_lenght(float truck_lenght) {
-		this.truck_lenght = truck_lenght;
+	public void setCar_registration(String car_registration) {
+		this.car_registration = car_registration;
+	}
+
+	public String getBrand_name() {
+		return brand_name;
+	}
+
+	public void setBrand_name(String brand_name) {
+		this.brand_name = brand_name;
 	}
 }
