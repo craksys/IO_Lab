@@ -123,4 +123,9 @@ public class Zlecenie {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public double calculateValue() {
+		double value = this.getDistance() * 0.5 * this.getFinish_day() - this.getStart_day();
+		return value;
+	}
 }
